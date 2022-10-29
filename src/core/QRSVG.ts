@@ -36,7 +36,7 @@ export default class QRSVG {
   _options: RequiredOptions;
   _qr?: QRCode;
   _image?: HTMLImageElement;
-  _svgPrefix: String
+  _svgPrefix: string;
 
   //TODO don't pass all options to this class
   constructor(options: RequiredOptions) {
@@ -45,7 +45,7 @@ export default class QRSVG {
     this._element.setAttribute("height", String(options.height));
     this._defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
     this._element.appendChild(this._defs);
-    this._svgPrefix = Math.random() + Math.random().toString(36)
+    this._svgPrefix = Math.random() + Math.random().toString(36);
     this._options = options;
   }
 
