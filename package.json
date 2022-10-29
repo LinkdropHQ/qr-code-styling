@@ -1,5 +1,5 @@
 {
-  "name": "qr-code-styling",
+  "name": "qr-code-styling-bigmac",
   "version": "1.5.1",
   "description": "Add a style and an image to your QR code",
   "main": "lib/qr-code-styling.js",
