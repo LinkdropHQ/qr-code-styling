@@ -175,7 +175,6 @@ export default class QRDot {
 
   _drawDiamond({ x, y, size, context }: DrawArgsCanvas): void {
     const diamondSize = size; // / 1.4142;
-    console.log("rotation 45 * Math.PI / 180 og size");
     this._basicDiamond({ x, y, size: diamondSize, context, rotation: (45 * Math.PI) / 180 });
   }
 
