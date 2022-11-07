@@ -20,13 +20,11 @@ export default class QRDot {
     const context = this._context;
     const type = this._type;
     let drawFunction;
-    console.log("in draw");
     switch (type) {
       case dotTypes.dots:
         drawFunction = this._drawDot;
         break;
       case dotTypes.diamond:
-        console.log("drawing diamond");
         drawFunction = this._drawDiamond;
         break;
       case dotTypes.classy:
