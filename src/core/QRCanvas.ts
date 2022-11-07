@@ -31,13 +31,12 @@ export default class QRCanvas {
   _canvas: HTMLCanvasElement;
   _options: RequiredOptions;
   _qr?: QRCode;
-  _image?: HTMLImageElement;
 
   //TODO don't pass all options to this class
   constructor(options: RequiredOptions) {
-    this._canvas = document.createElement("canvas");
-    this._canvas.width = options.width;
-    this._canvas.height = options.height;
+    // eslint-disable-next-line
+    // @ts-ignore
+    this._canvas = new OffscreenCanvas(options.width, options.height);
     this._options = options;
   }
 
@@ -79,15 +78,13 @@ export default class QRCanvas {
     this._qr = qr;
 
     if (this._options.image) {
-      await this.loadImage();
-      if (!this._image) return;
-      const { imageOptions, qrOptions } = this._options;
+      const { imageOptions, qrOptions, logoImageHeight, logoImageWidth } = this._options;
       const coverLevel = imageOptions.imageSize * errorCorrectionPercents[qrOptions.errorCorrectionLevel];
       const maxHiddenDots = Math.floor(coverLevel * count * count);
 
       drawImageSize = calculateImageSize({
-        originalWidth: this._image.width,
-        originalHeight: this._image.height,
+        originalWidth: logoImageWidth,
+        originalHeight: logoImageHeight,
         maxHiddenDots,
         maxHiddenAxisDots: count - 14,
         dotSize
@@ -121,7 +118,12 @@ export default class QRCanvas {
     this.drawCorners();
 
     if (this._options.image) {
-      this.drawImage({ width: drawImageSize.width, height: drawImageSize.height, count, dotSize });
+      this.drawImage({
+        width: drawImageSize.width,
+        height: drawImageSize.height,
+        count,
+        dotSize
+      });
     }
   }
 
@@ -354,27 +356,6 @@ export default class QRCanvas {
     });
   }
 
-  loadImage(): Promise<void> {
-    return new Promise((resolve, reject) => {
-      const options = this._options;
-      const image = new Image();
-
-      if (!options.image) {
-        return reject("Image is not defined");
-      }
-
-      if (typeof options.imageOptions.crossOrigin === "string") {
-        image.crossOrigin = options.imageOptions.crossOrigin;
-      }
-
-      this._image = image;
-      image.onload = (): void => {
-        resolve();
-      };
-      image.src = options.image;
-    });
-  }
-
   drawImage({
     width,
     height,
@@ -392,8 +373,8 @@ export default class QRCanvas {
       throw "canvasContext is not defined";
     }
 
-    if (!this._image) {
-      throw "image is not defined";
+    if (!this._options.image) {
+      return;
     }
 
     const options = this._options;
@@ -404,7 +385,7 @@ export default class QRCanvas {
     const dw = width - options.imageOptions.margin * 2;
     const dh = height - options.imageOptions.margin * 2;
 
-    canvasContext.drawImage(this._image, dx, dy, dw < 0 ? 0 : dw, dh < 0 ? 0 : dh);
+    canvasContext.drawImage(this._options.image, dx, dy, dw < 0 ? 0 : dw, dh < 0 ? 0 : dh);
   }
 
   _createGradient({

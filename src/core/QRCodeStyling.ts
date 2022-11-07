@@ -124,7 +124,12 @@ export default class QRCodeStyling {
       return new Blob(['<?xml version="1.0" standalone="no"?>\r\n' + source], { type: "image/svg+xml" });
     } else {
       return new Promise((resolve) =>
-        (element as unknown as QRCanvas).getCanvas().toBlob(resolve, `image/${extension}`, 1)
+        (element as unknown as QRCanvas)
+          .getCanvas()
+          // eslint-disable-next-line
+          // @ts-ignore
+          .convertToBlob({ type: `image/${extension}`, quality: 1 })
+          .then(resolve)
       );
     }
   }

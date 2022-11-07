@@ -14,6 +14,9 @@ export interface RequiredOptions extends Options {
     mode?: Mode;
     errorCorrectionLevel: ErrorCorrectionLevel;
   };
+  image?: ImageBitmap;
+  logoImageWidth: number;
+  logoImageHeight: number;
   imageOptions: {
     hideBackgroundDots: boolean;
     imageSize: number;
@@ -37,6 +40,8 @@ const defaultOptions: RequiredOptions = {
   height: 300,
   data: "",
   margin: 0,
+  logoImageWidth: 0,
+  logoImageHeight: 0,
   qrOptions: {
     typeNumber: qrTypes[0],
     mode: undefined,

@@ -1,6 +1,6 @@
 {
   "name": "qr-code-styling-bigmac",
-  "version": "1.5.2",
+  "version": "1.5.4",
   "description": "Add a style and an image to your QR code",
   "main": "lib/qr-code-styling.js",
   "types": "lib/index.d.ts",
@@ -8,6 +8,7 @@
     "lib"
   ],
   "dependencies": {
+    "@types/offscreencanvas": "^2019.7.0",
     "qrcode-generator": "^1.4.3"
   },
   "devDependencies": {

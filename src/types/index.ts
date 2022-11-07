@@ -104,7 +104,9 @@ export type Options = {
   height?: number;
   margin?: number;
   data?: string;
-  image?: string;
+  image?: ImageBitmap;
+  logoImageWidth: number;
+  logoImageHeight: number;
   qrOptions?: {
     typeNumber?: TypeNumber;
     mode?: Mode;

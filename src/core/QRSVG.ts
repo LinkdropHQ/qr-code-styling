@@ -360,7 +360,7 @@ export default class QRSVG {
       image.onload = (): void => {
         resolve();
       };
-      image.src = options.image;
+      // image.src = options.image;
     });
   }
 
@@ -384,7 +384,7 @@ export default class QRSVG {
     const dh = height - options.imageOptions.margin * 2;
 
     const image = document.createElementNS("http://www.w3.org/2000/svg", "image");
-    image.setAttribute("href", options.image || "");
+    // image.setAttribute("href", options.image || "");
     image.setAttribute("x", String(dx));
     image.setAttribute("y", String(dy));
     image.setAttribute("width", `${dw}px`);
