@@ -20,10 +20,14 @@ export default class QRDot {
     const context = this._context;
     const type = this._type;
     let drawFunction;
-
+    console.log("in draw");
     switch (type) {
       case dotTypes.dots:
         drawFunction = this._drawDot;
+        break;
+      case dotTypes.diamond:
+        console.log("drawing diamond");
+        drawFunction = this._drawDiamond;
         break;
       case dotTypes.classy:
         drawFunction = this._drawClassy;
@@ -75,6 +79,17 @@ export default class QRDot {
       ...args,
       draw: () => {
         context.rect(-size / 2, -size / 2, size, size);
+      }
+    });
+  }
+
+  _basicDiamond(args: BasicFigureDrawArgsCanvas): void {
+    const { size, context } = args;
+    const diamondSize = size / 1.4142;
+    this._rotateFigure({
+      ...args,
+      draw: () => {
+        context.rect(-diamondSize / 2, -diamondSize / 2, diamondSize, diamondSize);
       }
     });
   }
@@ -158,6 +173,12 @@ export default class QRDot {
 
   _drawSquare({ x, y, size, context }: DrawArgsCanvas): void {
     this._basicSquare({ x, y, size, context, rotation: 0 });
+  }
+
+  _drawDiamond({ x, y, size, context }: DrawArgsCanvas): void {
+    const diamondSize = size; // / 1.4142;
+    console.log("rotation 45 * Math.PI / 180 og size");
+    this._basicDiamond({ x, y, size: diamondSize, context, rotation: (45 * Math.PI) / 180 });
   }
 
   _drawRounded({ x, y, size, context, getNeighbor }: DrawArgsCanvas): void {
