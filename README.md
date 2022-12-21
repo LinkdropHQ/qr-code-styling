@@ -10,7 +10,7 @@ For more info message to spacehaz@gmail
 
 
 ## Create helper to load image
-This code should be outside of worker. It is needed to generate an image with Image class and define actual size of logo to be placed in the center of QR.
+This code should be used outside of worker. It is needed to generate an image with Image class and define actual size of logo in the center of future QR-code
 
 ```tsx
 // load-image.tsx
@@ -77,11 +77,20 @@ const initialize = await () => {
     qrImageOptions,
     LedgerIcon
   ) // generate image outside of worker to define image actual size
+}
 
+```
+
+## Create worker
+Use provided example to generate QR-code with image bitmap and sizes
+
+```tsx
+
+const createQR = await () => {
   const qrCode = new QRCodeStyling({
     data: `https://linkdrop.io`,
-    width, // width of qr
-    height, // height of qr
+    width, // width of QR-code
+    height, // height of QR-code
     margin: width / 60,
     type: 'canvas',
     cornersSquareOptions: {
@@ -106,9 +115,7 @@ const initialize = await () => {
   })
 
   const blob = await qrCode.getRawData('png')
-
 }
-
 
 
 ```
