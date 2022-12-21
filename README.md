@@ -77,6 +77,8 @@ const initialize = await () => {
     qrImageOptions,
     LedgerIcon
   ) // generate image outside of worker to define image actual size
+
+  // here should be the call of createQR function or any method of your worker
 }
 
 ```
