@@ -9,12 +9,17 @@ Try it here https://qr-code-styling.com
 For more info message to spacehaz@gmail
 
 
-## Create helper to load image on browser side
-This code should be outside of worker
+## Create helper to load image
+This code should be outside of worker. It is needed to generate an image with Image class and define actual size of logo to be placed in the center of QR.
 
 ```tsx
 // load-image.tsx
-import { TQRImageOptions } from 'types'
+type TQRImageOptions = {
+  hideBackgroundDots?: boolean;
+  imageSize?: number;
+  crossOrigin?: string;
+  margin?: number;
+}
 
 type TLoadImage = (
   imageOptions: TQRImageOptions,
@@ -49,6 +54,7 @@ export default loadImage
 ```
 
 ## Create QR code with previously rendered logo using helper above
+You need to get image bitmap for logo. It is needed to be used as data that can be used inside virtual canvas. Also you need to generate logo once and get width and height of that logo
 
 ```tsx
 import LedgerIcon from 'images/sample-logo.png' // logo for QR
