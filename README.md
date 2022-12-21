@@ -54,7 +54,7 @@ export default loadImage
 ```
 
 ## Create QR code with previously rendered logo using helper above
-You need to get image bitmap for logo. It is needed to be used as data that can be used inside virtual canvas. Also you need to generate logo once and get width and height of that logo
+You need to get an image bitmap for logo. It can be used inside virtual canvas, so you can pass it to QRCodeStyling class as parameter. Also you need to generate logo once and get width and height of that logo. That data can also be passed to QRCodeStyling class as parameter
 
 ```tsx
 import LedgerIcon from 'images/sample-logo.png' // logo for QR
