@@ -99,6 +99,8 @@ const initialize = await () => {
     logoImageHeight: logoImageLoaded.height // height of logo image
   })
 
+  const blob = await qrCode.getRawData('png')
+
 }
 
 
