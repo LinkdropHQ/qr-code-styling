@@ -79,6 +79,12 @@ const initialize = await () => {
   ) // generate image outside of worker to define image actual size
 
   // here should be the call of createQR function or any method of your worker
+  const myQRBlob = await createQR(
+    qrImageOptions,
+    logoImageLoaded.width,
+    logoImageLoaded.height,
+    img
+  )
 }
 
 ```
@@ -88,7 +94,12 @@ Use provided example to generate QR-code with image bitmap and sizes
 
 ```tsx
 
-const createQR = await () => {
+const createQR = await (
+  qrImageOptions: TQRImageOptions,
+  logoImageWidth: number,
+  logoImageHeight: number,
+  img: ImageBitmap,
+) => {
   const qrCode = new QRCodeStyling({
     data: `https://linkdrop.io`,
     width, // width of QR-code
@@ -112,11 +123,13 @@ const createQR = await () => {
     },
     image: img, // image of logo in center itself
     imageOptions: qrImageOptions,
-    logoImageWidth: logoImageLoaded.width, // width of logo image
-    logoImageHeight: logoImageLoaded.height // height of logo image
+    logoImageWidth, // width of logo image
+    logoImageHeight // height of logo image
   })
 
   const blob = await qrCode.getRawData('png')
+  
+  return blob
 }
 
 
