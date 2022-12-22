@@ -10,7 +10,8 @@ For more info message to spacehaz@gmail
 
 
 ## Create helper to load image
-This code should be used outside of worker. It is needed to generate an image with Image class and define actual size of logo in the center of future QR-code
+This code should be used outside of worker.
+It is needed to generate an image with Image class and define actual size of logo in the center of future QR-code
 
 ```tsx
 // load-image.tsx
@@ -54,7 +55,8 @@ export default loadImage
 ```
 
 ## Create QR code with previously rendered logo using helper above
-You need to get an image bitmap for logo. It can be used inside virtual canvas, so you can pass it to QRCodeStyling class as parameter. Also you need to generate logo once and get width and height of that logo. That data can also be passed to QRCodeStyling class as parameter
+You need to get an image bitmap for logo. It can be used inside virtual canvas, so you can pass it to QRCodeStyling class as parameter.
+Also you need to generate logo once and get width and height of that logo. That data can also be passed to QRCodeStyling class as parameter
 
 ```tsx
 import LedgerIcon from 'images/sample-logo.png' // logo for QR
@@ -89,8 +91,9 @@ const initialize = await () => {
 
 ```
 
-## Create worker
-Use provided example to generate QR-code with image bitmap and sizes
+## Create function to generate single QR-code
+Use provided example to generate QR-code with image bitmap and sizes.
+Can be used both in main JS-thread or in worker
 
 ```tsx
 
