@@ -59,7 +59,7 @@ You need to get an image bitmap for logo. It can be used inside virtual canvas, 
 Also you need to generate logo once and get width and height of that logo. That data can also be passed to QRCodeStyling class as parameter
 
 ```tsx
-import LedgerIcon from 'images/sample-logo.png' // logo for QR
+import Icon from 'images/sample-logo.png' // logo for QR
 import loadImage from './load-image.tsx'
 import QRCodeStyling from 'qr-code-styling-bigmac'
 
@@ -77,7 +77,7 @@ const initialize = await () => {
 
   const logoImageLoaded = await loadImage(
     qrImageOptions,
-    LedgerIcon
+    Icon
   ) // generate image outside of worker to define image actual size
 
   // here should be the call of createQR function or any method of your worker
