@@ -65,7 +65,7 @@ import QRCodeStyling from 'qr-code-styling-bigmac'
 
 const initialize = await () => {
 
-  const resp = await fetch(LedgerIcon)
+  const resp = await fetch(Icon)
   const blob = await resp.blob()
   const img = await createImageBitmap(blob as ImageBitmapSource) // create image bitmap for logo
 
