@@ -45,6 +45,7 @@ export default class QRCornerDot {
     this._rotateFigure({
       ...args,
       draw: () => {
+        context.moveTo(0, 0);
         context.arc(0, 0, size / 2, 0, Math.PI * 2);
       }
     });
